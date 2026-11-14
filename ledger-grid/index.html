@@ -1,0 +1,160 @@
+<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive"><meta name="googlebot" content="noindex, nofollow">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/base.css"><script src="../assets/proto.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Woven: lending infrastructure for platforms | Ledger Grid draft</title>
+<meta name="description" content="Design direction draft: Woven embedded business finance for platforms, Swiss typographic style.">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111;--body:#45454A;--rule:#D9D9D4;--paper:#fff;--sig:#00BA78;--deep:#046B48;--mark:#00BA78;--col:min(1240px,100% - 40px)}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.55 "Inter Tight",system-ui,sans-serif;font-feature-settings:"ss01","cv11"}
+::selection{background:var(--sig);color:#fff}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.g{width:var(--col);margin-inline:auto}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.82rem;letter-spacing:0}
+.hdr{border-bottom:1px solid var(--ink)}
+.hdr .g{display:flex;align-items:center;min-height:64px;gap:20px}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:1.25rem;letter-spacing:-.02em;min-height:44px}
+.brand .mark{width:28px;height:28px}
+.nav{margin-left:auto}.nav ul{display:flex;list-style:none;margin:0;padding:0}
+.nav a{display:flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;font-weight:500}
+.nav a:hover{text-decoration:underline;text-decoration-thickness:2px}
+.cta-s{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;background:var(--ink);color:#fff;text-decoration:none;font-weight:600}
+.cta-s:hover{background:var(--deep)}
+.menu-btn{margin-left:auto}
+@media (max-width:899px){.nav{position:absolute;left:0;right:0;top:64px;background:#fff;border-bottom:1px solid var(--ink);z-index:9}.nav ul{flex-direction:column}.nav a{min-height:56px;border-top:1px solid var(--rule);padding:0 20px;font-size:1.1rem}.hdr .cta-s{display:none}}
+@media (min-width:900px){.menu-btn{display:none}}
+.hdr{position:relative}
+/* hero */
+.hero{padding:48px 0 0}
+.hero h1{font-size:clamp(2.9rem,10.5vw,8.4rem);line-height:.92;letter-spacing:-.045em;font-weight:600;max-width:11ch}
+.hero h1 span{color:var(--deep)}
+.hero-row{display:grid;gap:24px;margin-top:36px;padding:24px 0 40px;border-top:1px solid var(--ink)}
+.hero-row p{font-size:1.2rem;max-width:44ch}
+.acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.ln{display:inline-flex;align-items:center;min-height:44px;font-weight:600;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+@media (min-width:900px){.hero{padding-top:88px}.hero-row{grid-template-columns:repeat(12,1fr)}.hero-row p{grid-column:1/7}.hero-row .acts{grid-column:8/13;justify-content:flex-end}}
+/* spec table */
+.sec{padding:64px 0;border-top:1px solid var(--ink)}
+.sec-h{display:grid;gap:12px;margin-bottom:36px}
+.sec-h h2{font-size:clamp(1.9rem,4.6vw,3.4rem);line-height:1;letter-spacing:-.035em;font-weight:600}
+.sec-h p{color:var(--body);max-width:52ch}
+@media (min-width:900px){.sec-h{grid-template-columns:repeat(12,1fr);align-items:end}.sec-h h2{grid-column:1/8}.sec-h p{grid-column:9/13}}
+.spec{border-top:1px solid var(--ink)}
+.spec>div{display:grid;grid-template-columns:1fr;gap:6px;padding:18px 0;border-bottom:1px solid var(--rule)}
+.spec dt{font-weight:600;font-size:1.15rem}
+.spec dd{color:var(--body)}
+@media (min-width:720px){.spec>div{grid-template-columns:4fr 8fr;gap:24px}}
+/* flow */
+.flow{display:grid;gap:0;counter-reset:f;list-style:none;padding:0;border-top:1px solid var(--ink)}
+.flow li{counter-increment:f;display:grid;grid-template-columns:56px 1fr;gap:12px;padding:20px 0;border-bottom:1px solid var(--rule);position:relative}
+.flow li::before{content:counter(f,decimal-leading-zero);font:500 .9rem/1.6 "IBM Plex Mono",monospace;color:var(--deep)}
+.flow h3{font-size:1.15rem;font-weight:600;margin-bottom:2px}
+.flow p{color:var(--body)}
+.flow code{display:inline-block;margin-top:8px;padding:3px 8px;background:#F3F3F0;font:500 .78rem "IBM Plex Mono",monospace;color:var(--ink)}
+@media (min-width:900px){.flow{grid-template-columns:repeat(3,1fr);column-gap:32px}.flow li{grid-template-columns:1fr;border-bottom:0;border-top:1px solid var(--rule)}}
+/* figures */
+.figs{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--ink)}
+.fig{padding:22px 16px 26px 0;border-bottom:1px solid var(--rule)}
+.fig:nth-child(odd){border-right:1px solid var(--rule)}
+.fig:nth-child(even){padding-left:16px}
+.fig b{display:block;font-size:clamp(2rem,6vw,3.6rem);font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.fig span{display:block;margin-top:10px;color:var(--body);font-size:.95rem}
+@media (min-width:900px){.figs{grid-template-columns:repeat(4,1fr)}.fig{border-right:1px solid var(--rule)!important;padding-left:16px!important}.fig:first-child{padding-left:0!important}.fig:last-child{border-right:0!important}}
+/* products matrix */
+.matrix{display:grid;gap:0;border-top:1px solid var(--ink)}
+.mcol{padding:22px 0;border-bottom:1px solid var(--rule)}
+.mcol h3{font-size:1.4rem;font-weight:600;letter-spacing:-.02em}
+.mcol .sub{color:var(--deep);font-weight:500;margin:2px 0 14px}
+.mcol h4{font-weight:600;margin-top:12px}
+.mcol p{color:var(--body)}
+@media (min-width:900px){.matrix{grid-template-columns:repeat(3,1fr)}.mcol{padding:24px 24px 28px;border-bottom:0;border-right:1px solid var(--rule)}.mcol:first-child{padding-left:0}.mcol:last-child{border-right:0}}
+/* code */
+.split{display:grid;gap:32px}
+@media (min-width:900px){.split{grid-template-columns:5fr 7fr;gap:48px}}
+pre{margin:0;background:var(--ink);color:#EDEDE8;padding:22px;overflow:auto;font:400 .82rem/1.7 "IBM Plex Mono",monospace;tab-size:2}
+pre .k{color:#7FE3B9}pre .s{color:#F2D49B}pre .c{color:#9A9A95}
+.quote{font-size:clamp(1.5rem,3.6vw,2.6rem);line-height:1.15;letter-spacing:-.025em;font-weight:500;max-width:28ch}
+.contact{background:var(--ink);color:#fff;padding:64px 0}
+.contact h2{font-size:clamp(2.4rem,8vw,6rem);line-height:.95;letter-spacing:-.045em;font-weight:600;max-width:12ch}
+.contact .row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-top:32px}
+.contact .cta-s{background:var(--sig);color:var(--ink)}
+.contact .cta-s:hover{background:#fff}
+footer{padding:28px 0 48px;font-size:.9rem;color:var(--body)}
+footer .g>div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;margin-bottom:14px}
+.rule-in{transform-origin:left;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.js .rule-in:not(.in){transform:scaleX(0)}
+</style></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="draftbar" role="note"><span>Design direction 2 of 8: Ledger Grid</span><a href="../">All directions</a></div>
+<header class="hdr"><div class="g">
+ <a class="brand" href="#top" aria-label="Woven home"><svg class="mark" viewBox="40 40 502.6 502.6" aria-hidden="true" focusable="false"><g transform="translate(52.5 98.1)"><path fill="currentColor" d="M0 149.5L133.3 386.5H158.4L223.8 277.5L201.8 238.4L146.5 330.5L44.7 149.5Z"/><path fill="var(--mark,#00BA78)" d="M268.4 197.9L309.6 129.5A85.5 85.5 0 1 0 161.7 127.4L307.4 386.5H335.4L477.6 149.5H432.1L322 332.9L195.7 108.3A46.5 46.5 0 1 1 276.1 109.4L246.5 158.8Z"/></g></svg>Woven</a>
+ <button class="menu-btn" data-menu aria-expanded="false" aria-controls="nav" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+ <nav class="nav" id="nav" data-nav aria-label="Main"><ul><li><a href="#program">Program</a></li><li><a href="#flow">How it works</a></li><li><a href="#products">Products</a></li><li><a href="#api">Developers</a></li><li><a href="#about">About</a></li></ul></nav>
+ <a class="cta-s" href="#contact">Contact sales</a>
+</div></header>
+<main id="main">
+<section class="hero g" id="top" aria-labelledby="h1">
+ <h1 id="h1">Lending, built into <span>your platform.</span></h1>
+ <div class="hero-row">
+  <p>Woven is embedded finance infrastructure for software platforms, marketplaces and payment processors. Offer business loans in your brand. We fund them, hold the risk and run the program.</p>
+  <div class="acts"><a class="cta-s" href="#contact">Contact sales <svg class="arw" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="ln" href="#flow">How it works</a></div>
+ </div>
+</section>
+<section class="g" aria-label="Program at a glance"><div class="figs">
+ <div class="fig reveal"><b>$0</b><span>Capital or credit risk on your balance sheet</span></div>
+ <div class="fig reveal"><b>1</b><span>Integration to launch the full program</span></div>
+ <div class="fig reveal"><b>6</b><span>Finance products, configured per platform</span></div>
+ <div class="fig reveal"><b>T+1</b><span>Most approved loans funded next business day</span></div>
+</div></section>
+<section class="sec g" id="program" aria-labelledby="prog-h">
+ <div class="sec-h"><h2 id="prog-h">What Woven takes off your plate</h2><p>A complete lending program, delivered as infrastructure. Your team ships the experience; we run everything behind it.</p></div>
+ <dl class="spec">
+  <div class="reveal"><dt>Underwriting and credit</dt><dd>Woven makes every credit decision using your platform data plus bank, bureau, identity and registry checks.</dd></div>
+  <div class="reveal"><dt>Capital</dt><dd>We fund every loan. No warehouse, no balance sheet exposure, no capital raise for you.</dd></div>
+  <div class="reveal"><dt>Compliance</dt><dd>Licensing, responsible lending and disclosures handled by Woven. [Licence details to confirm.]</dd></div>
+  <div class="reveal"><dt>Servicing and collections</dt><dd>Repayments collect automatically. Hardship and arrears are managed by our team.</dd></div>
+  <div class="reveal"><dt>Your brand</dt><dd>White-label components and APIs, styled to your product, on web and mobile.</dd></div>
+ </dl>
+</section>
+<section class="sec g" id="flow" aria-labelledby="flow-h">
+ <div class="sec-h"><h2 id="flow-h">Six steps, one connection</h2><p>From integration to revenue share, every step shows inside your product.</p></div>
+ <ol class="flow" role="list">
+  <li class="reveal"><div><h3>Connect your platform</h3><p>Embed ready-made components or use the API.</p><code>woven.js</code></div></li>
+  <li class="reveal"><div><h3>Send applicant data</h3><p>Business and transaction data, sent again whenever it changes.</p><code>POST /v1/applicants/</code></div></li>
+  <li class="reveal"><div><h3>Surface offers</h3><p>Pre-qualified offers render in your UI and stay current.</p><code>widget-session</code></div></li>
+  <li class="reveal"><div><h3>Apply and verify</h3><p>A short hosted flow in your brand, prefilled from your data.</p><code>POST /v1/applications/</code></div></li>
+  <li class="reveal"><div><h3>Fund and repay</h3><p>Accept in a few taps, funds land, repayments collect.</p><code>GET /status/</code></div></li>
+  <li class="reveal"><div><h3>Earn revenue share</h3><p>A share of revenue on every loan written through you.</p><code>webhook: loan.funded</code></div></li>
+ </ol>
+</section>
+<section class="sec g" id="products" aria-labelledby="prod-h">
+ <div class="sec-h"><h2 id="prod-h">Products by business need</h2><p>Pick the products that fit your customers. Each is configured to your vertical and data.</p></div>
+ <div class="matrix">
+  <div class="mcol reveal"><h3>Grow</h3><p class="sub">Up-front capital</p><h4>Term loans</h4><p>Lump sum, fixed repayments, set term. For fit-outs, equipment and hiring.</p><h4>Acquisition finance</h4><p>Buy a practice, rent roll or client book, sized on platform data.</p></div>
+  <div class="mcol reveal"><h3>Cashflow</h3><p class="sub">Working capital</p><h4>Line of credit</h4><p>Revolving limit. Draw, repay and redraw as needs change.</p><h4>Payables finance</h4><p>Pay suppliers now, repay on terms matched to the cash cycle.</p></div>
+  <div class="mcol reveal"><h3>Revenue</h3><p class="sub">Paid sooner</p><h4>Revenue-based finance</h4><p>Capital against future sales, repaid as a share of takings.</p><h4>Invoice finance</h4><p>Advance on unpaid invoices, settled when the client pays.</p></div>
+ </div>
+</section>
+<section class="sec g" id="api" aria-labelledby="api-h"><div class="split">
+ <div><h2 id="api-h" style="font-size:clamp(1.9rem,4.6vw,3.4rem);line-height:1;letter-spacing:-.035em;font-weight:600">One call to pre-qualify.</h2><p style="color:var(--body);margin:16px 0 20px;max-width:44ch">Send what you know about the business. Woven returns an offer you can render with one script tag, then a webhook every time something changes.</p><a class="ln" href="#contact">Read the integration guide <svg class="arw" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+ <pre class="reveal" tabindex="0" aria-label="Example API request"><code><span class="c"># Create or update an applicant</span>
+<span class="k">curl</span> -X POST https://api.woven.example/v1/applicants/ \
+  -H <span class="s">"Authorization: Bearer wvn_sk_…"</span> \
+  -d <span class="s">'{ "reference": "acct_4821",
+        "business": { "abn": "[ABN]", "monthly_revenue": 84210 } }'</span>
+
+<span class="c"># 201 Created</span>
+{ <span class="s">"offer"</span>: { <span class="s">"product"</span>: <span class="s">"term_loan"</span>, <span class="s">"up_to"</span>: 60000 } }</code></pre>
+</div></section>
+<section class="sec g" id="about" aria-label="Thesis">
+ <p class="quote reveal">Capital will reach businesses through the software they run on. Woven is the infrastructure that makes that possible for any platform.</p>
+</section>
+<section class="contact" id="contact" aria-labelledby="c-h"><div class="g">
+ <h2 id="c-h">Launch finance in weeks.</h2>
+ <div class="row"><a class="cta-s" href="#contact">Contact sales <svg class="arw" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><span class="mono" style="font-size:.95rem">hello@wovenfinance.com.au</span></div>
+</div></section>
+</main>
+<footer><div class="g"><div><span>Woven Finance Pty Ltd · ACN 702 098 753</span><span>Program · Products · Developers · Privacy</span></div><p class="draftnote">Design draft for review only. This is not the live Woven website and is not affiliated with or approved by Woven Finance. Copy is rewritten and imagery is original and illustrative. Placeholders in [brackets] need confirming.</p></div></footer>
+</body></html>
